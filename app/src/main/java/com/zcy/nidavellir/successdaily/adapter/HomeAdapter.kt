@@ -2,8 +2,11 @@ package com.zcy.nidavellir.successdaily.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.entity.AbstractExpandableItem
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.zcy.nidavellir.successdaily.R
-import kotlinx.android.synthetic.main.layout_item.view.*
+import com.zcy.nidavellir.successdaily.adapter.ExpandableAdapter.Companion.ITEM
+import com.zcy.nidavellir.successdaily.adapter.ExpandableAdapter.Companion.SUB_ITEM
 
 /**
  * @author:         zhaochunyu
@@ -30,4 +33,20 @@ class Item(
     val time: String = "17.19",
     val moon: String = "smile",
     val weather: String = "rain"
-)
+) : AbstractExpandableItem<SubItem>(), MultiItemEntity {
+    override fun getItemType(): Int {
+        return ITEM
+    }
+
+    override fun getLevel(): Int {
+        return 0
+    }
+}
+
+class SubItem(
+    val title: String
+) : MultiItemEntity {
+    override fun getItemType(): Int {
+        return SUB_ITEM
+    }
+}
